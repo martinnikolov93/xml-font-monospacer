@@ -18,7 +18,9 @@ function monospacer(string) {
 
     for (let i = 0; i < widthNumbers.length; i++) {
         let widthValue = widthNumbers[i];
-        newStr = newStr.replace(`xoffset="0"`, `xoffset="${((highestXAdvance - widthValue) / 2)}"`)
+        let xOffset = ((highestXAdvance - widthValue) / 2);
+
+        newStr = newStr.replace(`xoffset="null"`, `xoffset="${xOffset}"`)
     }
 
     return newStr;
@@ -35,7 +37,7 @@ function nthIndex(str, pat, n) {
 
 function nullifyXOffset(string) {
     let regex = /xoffset="[0-9.]+"/gm;
-    return string.replace(regex, `xoffset="0"`);
+    return string.replace(regex, `xoffset="null"`);
 }
 
 function getWidthStrings(string) {
@@ -80,7 +82,7 @@ inputEl.addEventListener("input", () => {
 });
 
 let exampleString = `
-    <char id="48" x="0" y="210" width="78" height="105" xoffset="0" yoffset="-25" xadvance="56" page="0" /><!-- 0 -->
+    <char id="48" x="0" y="210" width="79" height="105" xoffset="0" yoffset="-25" xadvance="56" page="0" /><!-- 0 -->
     <char id="49" x="411" y="288" width="47" height="102" xoffset="5151" yoffset="-24" xadvance="79" page="0" /><!-- 1 -->
     <char id="50" x="288" y="312" width="62" height="103" xoffset="23" yoffset="-25" xadvance="68" page="0" /><!-- 2 -->
     <char id="51" x="238" y="0" width="65" height="105" xoffset="0" yoffset="-25" xadvance="74" page="0" /><!-- 3 -->
