@@ -21,7 +21,11 @@
         }
 
         div {
-            margin: 1.5%;
+            margin: 10px;
+        }
+
+        button {
+            margin: 2px;
         }
     </style>
 </head>
@@ -29,11 +33,13 @@
     <div><h1>XML FONT MONOSPACER</h1></div>
     <div><h4>Makes font characters monospaced.</h4></div>
 
-    <div><h2>Input</h2><button id="example-btn">Place Example XML</button></div>
+    <div><button id="example-btn">Place Example XML</button></div>
+    <div><h4>CHANGE WIDTH</h4><button id="decrease-width">&#60;</button><button id="increase-width">&#62;</button></div>
+    <div><h2>INPUT</h2></div>
 
     <textarea id="input" autofocus placeholder="Paste xml here.."></textarea>
 
-    <div><h2>Result</h2></div>
+    <div><h2>RESULT</h2></div>
 
     <textarea id="output" disabled></textarea>
 

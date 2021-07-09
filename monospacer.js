@@ -9,6 +9,12 @@ function monospacer(string) {
     if (!widthStrings) return "Can't parse xml. Missing width property.";
     let widthNumbers = getWidthNumbers(widthStrings);
 
+    for (let i = 0; i < widthNumbers.length; i++) {
+        const widthValue = widthNumbers[i];
+        console.log(widthValue)
+        if (widthValue < 0) return "Oops.. Received negative width!"
+    }
+
     let nullifiedStr = nullifyXOffset(xAdvancedString);
     if (!nullifiedStr) return "Can't parse xml. Missing xoffset property.";
 
@@ -36,17 +42,17 @@ function nthIndex(str, pat, n) {
 }
 
 function nullifyXOffset(string) {
-    let regex = /xoffset="[0-9.]+"/gm;
+    let regex = /xoffset="[0-9.-]+"/gm;
     return string.replace(regex, `xoffset="null"`);
 }
 
 function getWidthStrings(string) {
-    let regex = /width="[0-9]+"/gm;
+    let regex = /width="[0-9.-]+"/gm;
     return string.match(regex);
 }
 
 function getWidthNumbers(stringArr) {
-    let regex = /[0-9]+/gm;
+    let regex = /[0-9.-]+/gm;
     return stringArr.toString().match(regex);
 }
 
@@ -55,17 +61,17 @@ function getBiggestXAdvance(arr) {
 }
 
 function replaceXAdvance(string, number) {
-    let regex = /xadvance="[0-9]+"/gm;
+    let regex = /xadvance="[0-9.-]+"/gm;
     return string.replaceAll(regex, `xadvance="${number}"`);
 }
 
 function getXAdvanceStrings(string) {
-    let regex = /xadvance="[0-9]+"/gm;
+    let regex = /xadvance="[0-9.-]+"/gm;
     return string.match(regex);
 }
 
 function getXAdvanceNumbers(stringArr) {
-    let regex = /[0-9]+/gm;
+    let regex = /[0-9.-]+/gm;
     return stringArr.toString().match(regex);
 }
 
@@ -98,4 +104,43 @@ exampleBtn.addEventListener("click", () => {
     inputEl.value = exampleString;
     outputEl.value = monospacer(exampleString);
 })
+
+let decrWidthBtn = document.getElementById("decrease-width");
+
+decrWidthBtn.addEventListener("click", () => {
+    let string = inputEl.value;
+
+    let newStr = changeWidth(string, -1);
+
+    inputEl.value = newStr;
+
+    outputEl.value = monospacer(inputEl.value)
+})
+
+let incrWidthBtn = document.getElementById("increase-width");
+
+incrWidthBtn.addEventListener("click", () => {
+    let string = inputEl.value;
+
+    let newStr = changeWidth(string, 1);
+
+    inputEl.value = newStr;
+
+    outputEl.value = monospacer(inputEl.value)
+});
+
+function changeWidth(string, amount) {
+    let widthStrings = getWidthStrings(string);
+    let widthNumbers = getWidthNumbers(widthStrings);
+
+    let newStr = string;
+
+    for (let i = 0; i < widthNumbers.length; i++) {
+        const num = Number(widthNumbers[i]);
+
+        newStr = newStr.replace(`width="${num}"`, `width="${num + amount}"`);
+    }
+
+    return newStr;
+}
 
