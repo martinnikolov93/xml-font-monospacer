@@ -11,7 +11,6 @@ function monospacer(string) {
 
     for (let i = 0; i < widthNumbers.length; i++) {
         const widthValue = widthNumbers[i];
-        console.log(widthValue)
         if (widthValue < 0) return "Oops.. Received negative width!"
     }
 
@@ -109,8 +108,10 @@ let decrWidthBtn = document.getElementById("decrease-width");
 
 decrWidthBtn.addEventListener("click", () => {
     let string = inputEl.value;
+    if (string === "") { outputEl.value = "Can't parse empty string"; return; }
 
     let newStr = changeWidth(string, -1);
+    if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
 
     inputEl.value = newStr;
 
@@ -121,8 +122,10 @@ let incrWidthBtn = document.getElementById("increase-width");
 
 incrWidthBtn.addEventListener("click", () => {
     let string = inputEl.value;
+    if (string === "") { outputEl.value = "Can't parse empty string"; return; }
 
     let newStr = changeWidth(string, 1);
+    if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
 
     inputEl.value = newStr;
 
@@ -131,6 +134,7 @@ incrWidthBtn.addEventListener("click", () => {
 
 function changeWidth(string, amount) {
     let widthStrings = getWidthStrings(string);
+    if (!widthStrings) { return "no-width"; };
     let widthNumbers = getWidthNumbers(widthStrings);
 
     let newStr = string;
