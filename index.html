@@ -27,6 +27,10 @@
         button {
             margin: 2px;
         }
+
+        #change-width-by{
+            width: 50px;
+        }
     </style>
 </head>
 <body>
@@ -34,7 +38,7 @@
     <div><h4>Makes font characters monospaced.</h4></div>
 
     <div><button id="example-btn">Place Example XML</button></div>
-    <div><h4>CHANGE WIDTH</h4><button id="decrease-width">&#60;</button><button id="increase-width">&#62;</button></div>
+    <div><h4>CHANGE WIDTH BY</h4><button id="decrease-width">&#60;</button><input type="number" id="change-width-by" value="1" step="1" min="1"><button id="increase-width">&#62;</button></div>
     <div><h2>INPUT</h2></div>
 
     <textarea id="input" autofocus placeholder="Paste xml here.."></textarea>

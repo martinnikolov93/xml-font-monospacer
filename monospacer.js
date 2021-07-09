@@ -110,7 +110,8 @@ decrWidthBtn.addEventListener("click", () => {
     let string = inputEl.value;
     if (string === "") { outputEl.value = "Can't parse empty string"; return; }
 
-    let newStr = changeWidth(string, -1);
+    let newValue = -Number(changeWithBy.value);
+    let newStr = changeWidth(string, newValue);
     if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
 
     inputEl.value = newStr;
@@ -124,13 +125,17 @@ incrWidthBtn.addEventListener("click", () => {
     let string = inputEl.value;
     if (string === "") { outputEl.value = "Can't parse empty string"; return; }
 
-    let newStr = changeWidth(string, 1);
+    let newValue = Number(changeWithBy.value);
+    console.log(newValue)
+    let newStr = changeWidth(string, newValue);
     if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
 
     inputEl.value = newStr;
 
     outputEl.value = monospacer(inputEl.value)
 });
+
+let changeWithBy = document.getElementById("change-width-by");
 
 function changeWidth(string, amount) {
     let widthStrings = getWidthStrings(string);
@@ -141,8 +146,9 @@ function changeWidth(string, amount) {
 
     for (let i = 0; i < widthNumbers.length; i++) {
         const num = Number(widthNumbers[i]);
+        const result = (num + amount);
 
-        newStr = newStr.replace(`width="${num}"`, `width="${num + amount}"`);
+        newStr = newStr.replace(`width="${num}"`, `width="${result}"`);
     }
 
     return newStr;
