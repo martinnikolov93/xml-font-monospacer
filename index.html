@@ -14,9 +14,14 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
+        .holder {
+            width: 80%;
+            margin: auto;
+        }
+
         textarea {
-            width: 60%;
-            height: 30vh;
+             width: 100%;
+            height: 30vh; 
             text-align: left;
         }
 
@@ -28,24 +33,32 @@
             margin: 2px;
         }
 
-        #change-width-by{
+        #change-width-by {
             width: 50px;
+        }
+
+        #copy-clipboard {
+            float: right;
         }
     </style>
 </head>
 <body>
-    <div><h1>XML FONT MONOSPACER</h1></div>
-    <div><h4>Makes font characters monospaced.</h4></div>
 
-    <div><button id="example-btn">Place Example XML</button></div>
-    <div><h4>CHANGE WIDTH BY</h4><button id="decrease-width">&#60;</button><input type="number" id="change-width-by" value="1" step="1" min="1"><button id="increase-width">&#62;</button></div>
-    <div><h2>INPUT</h2></div>
-
-    <textarea id="input" autofocus placeholder="Paste xml here.."></textarea>
-
-    <div><h2>RESULT</h2></div>
-
-    <textarea id="output" disabled></textarea>
+    <div class="holder">
+        <div><h1>XML FONT MONOSPACER</h1></div>
+        <div><h4>Makes font characters monospaced.</h4></div>
+    
+        <div><button id="example-btn">Place Example XML</button></div>
+        <div><h4>CHANGE WIDTH BY</h4><button id="decrease-width">&#60;</button><input type="number" id="change-width-by" value="1" step="1" min="1"><button id="increase-width">&#62;</button></div>
+        <div><h2>INPUT</h2></div>
+        <div>Paste the characters which require monospacing.</div>
+    
+        <textarea id="input" autofocus placeholder="Paste xml here.."></textarea>
+    
+        <div><h2>RESULT</h2></div>
+        <div><button id="copy-clipboard">Copy to clipboard</button></div>
+        <textarea id="output" placeholder="Monospaced font will show up here." readonly></textarea>   
+    </div>
 
     <script src="monospacer.js"></script>
 </body>

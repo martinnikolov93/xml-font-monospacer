@@ -154,3 +154,12 @@ function changeWidth(string, amount) {
     return newStr;
 }
 
+let copyBtn = document.getElementById("copy-clipboard");
+
+copyBtn.addEventListener("click", copyToClipboard);
+
+function copyToClipboard() {
+    outputEl.focus();
+    outputEl.select();
+    document.execCommand("copy");
+}
