@@ -155,6 +155,8 @@ function changeWidth(string, amount) {
 }
 
 let copyBtn = document.getElementById("copy-clipboard");
+let textCopiedEl = document.getElementById("text-copied");
+let copyTimeout = null;
 
 copyBtn.addEventListener("click", copyToClipboard);
 
@@ -162,4 +164,7 @@ function copyToClipboard() {
     outputEl.focus();
     outputEl.select();
     document.execCommand("copy");
+    textCopiedEl.classList.remove("display-none");
+    clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => { textCopiedEl.classList.add("display-none"); }, 2000);
 }
