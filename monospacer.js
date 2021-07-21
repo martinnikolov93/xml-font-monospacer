@@ -1,3 +1,5 @@
+"use strict";
+
 function monospacer(string) {
     let xAdvanceStrings = getXAdvanceStrings(string);
     if (!xAdvanceStrings) return "Can't parse xml. Missing xadvance property.";
@@ -126,7 +128,6 @@ incrWidthBtn.addEventListener("click", () => {
     if (string === "") { outputEl.value = "Can't parse empty string"; return; }
 
     let newValue = Number(changeWithBy.value);
-    console.log(newValue)
     let newStr = changeWidth(string, newValue);
     if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
 
