@@ -25,13 +25,14 @@ textarea {
 
 button {
     margin: 2px;
+    min-height: 30px;
     background-color: dodgerblue;
     color: white;
     border: 1px solid black;
 }
 
-span {
-    margin: 1px;
+input {
+    min-height: 30px;
 }
 
 #output {
@@ -76,4 +77,12 @@ span {
 
 .display-none {
    display: none;
+}
+
+.text-area-tools {
+    min-height: 40px;
+}
+
+.header {
+    margin-bottom: 50px;
 }
