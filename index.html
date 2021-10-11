@@ -21,14 +21,6 @@
             <div><h2>INPUT</h2></div>
             <div>
                 <div class="text-area-tools flex flex-row flex-justify-between flex-align-center">
-                    <span style="display: none;" class="flex flex-column">
-                        <h4>CHANGE WIDTH</h4>
-                        <div>
-                            <button id="decrease-width" title="Decrease width">&#60;</button>
-                            <input type="number" id="change-width-by" value="1" step="1" min="1">
-                            <button id="increase-width" title="Increase width">&#62;</button>
-                        </div>
-                    </span>
                     <span>Paste only the characters which require monospacing.</span>
                     <span>
                         <button id="example-btn">Place Example XML</button>
@@ -40,7 +32,7 @@
         </section>
 
         <section class="wrapper">
-            <div><h2>RESULT</h2></div>
+            <div><h2>RESULT</h2> <span class="visibility-hidden" id="x-advance-element">Highest xadvance found: <span id="x-advance-number"></span></span></div>
             <div>
                 <div class="text-area-tools flex flex-justify-end flex-align-center">
                     <span id="text-copied" class="color-lime display-none">Copied!</span>

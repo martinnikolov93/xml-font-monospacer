@@ -39,10 +39,6 @@ input {
     background: #f7f7f7;
 }
 
-#change-width-by {
-    width: 50px;
-}
-
 .flex {
     display: flex;
 }
@@ -78,6 +74,10 @@ input {
 .display-none {
    display: none;
 }
+
+.visibility-hidden {
+    visibility: hidden;
+ }
 
 .text-area-tools {
     min-height: 40px;

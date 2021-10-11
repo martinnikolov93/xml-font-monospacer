@@ -1,10 +1,13 @@
 "use strict";
 
+let xAdvance = null;
+
 function monospacer(string) {
     let xAdvanceStrings = getXAdvanceStrings(string);
     if (!xAdvanceStrings) return "Can't parse xml. Missing xadvance property.";
     let xAdvanceNumbers = getXAdvanceNumbers(xAdvanceStrings);
     let highestXAdvance = getBiggestXAdvance(xAdvanceNumbers);
+    xAdvance = highestXAdvance;
     let xAdvancedString = replaceXAdvance(string, highestXAdvance)
 
     let widthStrings = getWidthStrings(string);
@@ -78,13 +81,18 @@ function getXAdvanceNumbers(stringArr) {
 
 let inputEl = document.getElementById("input");
 let outputEl = document.getElementById("output");
+let xAdvanceEl = document.getElementById("x-advance-element");
+let xAdvanceNumber = document.getElementById("x-advance-number");
 let exampleBtn = document.getElementById("example-btn");
 
 inputEl.addEventListener("input", () => {
     if (!inputEl.value) {
         outputEl.value = "No XML :(";
+        xAdvanceEl.classList.add("visibility-hidden");
     } else {
         outputEl.value = monospacer(inputEl.value);
+        xAdvanceEl.classList.remove("visibility-hidden");
+        xAdvanceNumber.textContent = xAdvance;
     }
 });
 
@@ -104,56 +112,9 @@ let exampleString = `
 exampleBtn.addEventListener("click", () => {
     inputEl.value = exampleString;
     outputEl.value = monospacer(exampleString);
+    xAdvanceEl.classList.remove("visibility-hidden");
+    xAdvanceNumber.textContent = xAdvance;
 })
-
-let decrWidthBtn = document.getElementById("decrease-width");
-
-decrWidthBtn.addEventListener("click", () => {
-    let string = inputEl.value;
-    if (string === "") { outputEl.value = "Can't parse empty string"; return; }
-
-    let newValue = -Number(changeWithBy.value);
-    let newStr = changeWidth(string, newValue);
-    if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
-
-    inputEl.value = newStr;
-
-    outputEl.value = monospacer(inputEl.value)
-})
-
-let incrWidthBtn = document.getElementById("increase-width");
-
-incrWidthBtn.addEventListener("click", () => {
-    let string = inputEl.value;
-    if (string === "") { outputEl.value = "Can't parse empty string"; return; }
-
-    let newValue = Number(changeWithBy.value);
-    let newStr = changeWidth(string, newValue);
-    if (newStr === "no-width") { outputEl.value = "Can't parse xml. Missing width property."; return; };
-
-    inputEl.value = newStr;
-
-    outputEl.value = monospacer(inputEl.value)
-});
-
-let changeWithBy = document.getElementById("change-width-by");
-
-function changeWidth(string, amount) {
-    let widthStrings = getWidthStrings(string);
-    if (!widthStrings) { return "no-width"; };
-    let widthNumbers = getWidthNumbers(widthStrings);
-
-    let newStr = string;
-
-    for (let i = 0; i < widthNumbers.length; i++) {
-        const num = Number(widthNumbers[i]);
-        const result = (num + amount);
-
-        newStr = newStr.replace(`width="${num}"`, `width="${result}"`);
-    }
-
-    return newStr;
-}
 
 let copyBtn = document.getElementById("copy-clipboard");
 let textCopiedEl = document.getElementById("text-copied");
