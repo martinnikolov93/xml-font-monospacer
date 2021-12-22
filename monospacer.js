@@ -79,11 +79,54 @@ function getXAdvanceNumbers(stringArr) {
     return stringArr.toString().match(regex);
 }
 
+function changeXAdvance(string, amount) {
+    let strArr = getXAdvanceStrings(string);
+
+    if (!strArr) { return "error" };
+
+    let numArr = getXAdvanceNumbers(strArr);
+
+    if (!numArr) { return "error" };
+
+    let newStr = string.replaceAll("xadvance", "xadvancetochange")
+
+    for (let i = 0; i < numArr.length; i++) {
+        let num = Number(numArr[i]);
+        let newValue = num + amount;
+
+        newStr = newStr.replace(`xadvancetochange="${num}"`, `xadvance="${newValue}"`);
+    }
+
+    return newStr;
+}
+
 let inputEl = document.getElementById("input");
 let outputEl = document.getElementById("output");
 let xAdvanceEl = document.getElementById("x-advance-element");
 let xAdvanceNumber = document.getElementById("x-advance-number");
 let exampleBtn = document.getElementById("example-btn");
+let decreaseXAdvanceBtn = document.getElementById("decrease-x-advance");
+let increaseXAdvanceBtn = document.getElementById("increase-x-advance");
+
+decreaseXAdvanceBtn.addEventListener("click", () => {
+    let newStr = changeXAdvance(inputEl.value, -1);
+
+    if (newStr === "error") { return }
+
+    inputEl.value = newStr;
+    outputEl.value = monospacer(newStr);
+    xAdvanceNumber.textContent = xAdvance;
+})
+
+increaseXAdvanceBtn.addEventListener("click", () => {
+    let newStr = changeXAdvance(inputEl.value, 1);
+
+    if (newStr === "error") { return }
+
+    inputEl.value = newStr;
+    outputEl.value = monospacer(newStr);
+    xAdvanceNumber.textContent = xAdvance;
+})
 
 inputEl.addEventListener("input", () => {
     if (!inputEl.value) {
