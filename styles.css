@@ -67,6 +67,10 @@ input {
     align-items: center;
 }
 
+.flex-direction-column{
+    flex-direction: column;
+}
+
 .color-lime {
     color: rgb(6, 175, 6);
 }
