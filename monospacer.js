@@ -173,6 +173,7 @@ increaseXAdvanceBtn.addEventListener("click", () => {
         xAdvanceNumber.textContent = xAdvance;
     } else {
         outputEl.value = fixXOffset(newStr);
+        xAdvanceEl.classList.add("visibility-hidden");
     }
 })
 
@@ -187,6 +188,7 @@ inputEl.addEventListener("input", () => {
             xAdvanceNumber.textContent = xAdvance;
         } else {
             outputEl.value = fixXOffset(inputEl.value);
+            xAdvanceEl.classList.add("visibility-hidden");
         }
     }
 });
@@ -213,6 +215,7 @@ monoSpaceCheckbox.addEventListener("click", () => {
         xAdvanceNumber.textContent = xAdvance;
     } else {
         outputEl.value = fixXOffset(inputEl.value);
+        xAdvanceEl.classList.add("visibility-hidden");
     }
 
 })
